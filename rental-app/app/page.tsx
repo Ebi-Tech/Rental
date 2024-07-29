@@ -20,13 +20,13 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-between bg-gray-50">
-      <header className="w-full flex justify-center bg-amber-200 p-6 shadow-md">
+      <header className="w-full flex justify-center bg-amber-200 p-5 shadow-md">
         <div className="flex flex-col items-center space-y-4">
           <div className="flex flex-col items-center">
-            <Image src="/images/r.png" alt="Logo" width={190} height={190} />
+            <Image src="/images/r.png" alt="Logo" width={90} height={90} />
             <span className="text-black text-2xl font-bold">Rental</span>
           </div>
-          <nav className="flex flex-row items-center gap-10">
+          <nav className="flex flex-row items-center gap-x-20">
             <Link legacyBehavior href="/">
               <a className={navLinkClasses('/')}>
                 <FaHome className="mr-2" />

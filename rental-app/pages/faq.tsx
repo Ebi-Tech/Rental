@@ -1,54 +1,52 @@
+// /pages/faq.tsx
+
 "use client";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaHome, FaList, FaServicestack, FaQuestionCircle, FaUserTie } from "react-icons/fa";
+import { FaHome, FaList, FaServicestack, FaQuestionCircle, FaUserTie, FaPlus, FaMinus } from "react-icons/fa";
 import { usePathname } from 'next/navigation';
 import 'tailwindcss/tailwind.css';
 
-function navLinkClasses(path: string): string {
-  return `nav-link ${path === window.location.pathname ? 'active' : ''}`;
-}
+const faqData = [
+  {
+    question: "How do I search for rental properties?",
+    answer: "You can search for rental properties by navigating to the Listings page and using the search filters to specify your criteria, such as location, price range, and property type."
+  },
+  {
+    question: "How do I contact an agent?",
+    answer: "You can contact an agent by going to the Find an Agent page, selecting the city you're interested in, and using the provided WhatsApp or phone contact details to reach out to them."
+  },
+  {
+    question: "What services do you offer?",
+    answer: "We offer a range of services including property listings, connecting clients with agents, and providing detailed information about rental properties in various cities."
+  },
+  {
+    question: "What are the payment options?",
+    answer: "Payment options vary depending on the landlord or property manager. Most commonly accepted methods include bank transfer, mobile money, and cash payments."
+  },
+  {
+    question: "Can I schedule a viewing of a property?",
+    answer: "Yes, you can schedule a viewing by contacting the agent responsible for the property. They will arrange a convenient time for you to visit and inspect the property."
+  },
+];
 
-const cities = ["Kigali", "Musanze", "Rubavu", "Huye"];
-
-const listingsData: { [key: string]: { id: number; name: string; price: string; image: string; }[] } = {
-  Kigali: [
-    { id: 1, name: "Luxury Apartment", price: "$1000/month", image: "/images/house1.jpg" },
-    { id: 2, name: "Modern Condo", price: "$800/month", image: "/images/house2.jpg" },
-  ],
-  Musanze: [
-    { id: 3, name: "Cozy Cottage", price: "$600/month", image: "/images/house3.jpg" },
-    { id: 4, name: "Mountain View House", price: "$700/month", image: "/images/house4.jpg" },
-  ],
-  Rubavu: [
-    { id: 5, name: "Beachside Villa", price: "$1200/month", image: "/images/house5.jpg" },
-    { id: 6, name: "Lakefront Bungalow", price: "$1100/month", image: "/images/house6.jpg" },
-  ],
-  Huye: [
-    { id: 7, name: "Historical Home", price: "$750/month", image: "/images/house7.jpg" },
-    { id: 8, name: "University Apartment", price: "$650/month", image: "/images/house8.jpg" },
-  ],
-};
-
-export default function Listings() {
+export default function FAQ() {
   const pathname = usePathname();
-  const [selectedCity, setSelectedCity] = useState<string>("Kigali");
-  const [listings, setListings] = useState(listingsData[selectedCity]);
+  const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
 
-  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const city = e.target.value;
-    setSelectedCity(city);
-    setListings(listingsData[city]);
+  const toggleQuestion = (index: number) => {
+    setSelectedQuestion(selectedQuestion === index ? null : index);
   };
 
-  const navLinkClasses = (path: string) =>
-    `flex items-center text-black cursor-pointer relative ${pathname === path ? 'underline' : ''
+  const navLinkClasses = (path: string) => 
+    `flex items-center text-black cursor-pointer relative ${
+      pathname === path ? 'underline' : ''
     }`;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between bg-gray-50">
-      <header className="w-full flex justify-center bg-amber-200 p-5 shadow-md">
+     <header className="w-full flex justify-center bg-amber-200 p-5 shadow-md">
         <div className="flex flex-col items-center space-y-4">
           <div className="flex flex-col items-center">
             <Image src="/images/r.png" alt="Logo" width={90} height={90} />
@@ -95,27 +93,28 @@ export default function Listings() {
       </header>
 
       <main className="flex-grow container mx-auto p-8 bg-amber-100 shadow-lg rounded-lg mt-10">
-        <section className="flex flex-col md:flex-row w-full items-center justify-between bg-gray-800 text-white p-8 rounded-lg">
-          <div className="md:w-1/2 space-y-4">
-            <h1 className="text-4xl font-bold">Available Houses in {selectedCity}</h1>
-            <select onChange={handleCityChange} className="bg-amber-500 text-white px-2 py-2 rounded-lg">
-              {cities.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
+        <section className="w-full text-center mt-16">
+          <h1 className="text-4xl font-bold text-gray-900">Frequently Asked Questions</h1>
+          <div className="mt-8 grid grid-cols-1 gap-8">
+            {faqData.map((faq, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <div className="flex justify-between items-center">
+                  <button
+                    className="text-left text-2xl font-bold text-gray-900 focus:outline-none"
+                    onClick={() => toggleQuestion(index)}
+                  >
+                    {faq.question}
+                  </button>
+                  <button onClick={() => toggleQuestion(index)} className="focus:outline-none">
+                    {selectedQuestion === index ? <FaMinus className="text-xl" /> : <FaPlus className="text-xl" />}
+                  </button>
+                </div>
+                {selectedQuestion === index && (
+                  <p className="mt-4 text-lg text-gray-700">{faq.answer}</p>
+                )}
+              </div>
+            ))}
           </div>
-        </section>
-
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          {listings.map((listing) => (
-            <div key={listing.id} className="bg-white p-6 rounded-lg shadow-md">
-              <Image src={listing.image} alt={listing.name} width={500} height={300} className="rounded-lg" />
-              <h2 className="text-2xl font-bold mt-4">{listing.name}</h2>
-              <p className="text-lg text-gray-700 mt-2">{listing.price}</p>
-            </div>
-          ))}
         </section>
       </main>
 
