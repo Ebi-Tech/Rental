@@ -4,7 +4,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaHome, FaList, FaServicestack, FaQuestionCircle, FaUserTie, FaPlus, FaMinus } from "react-icons/fa";
+import { FaHome, FaList, FaServicestack, FaQuestionCircle, FaUserTie, FaPlus, FaMinus, FaPlusCircle } from "react-icons/fa";
 import { usePathname } from 'next/navigation';
 import 'tailwindcss/tailwind.css';
 
@@ -46,51 +46,53 @@ export default function FAQ() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between bg-gray-50">
-     <header className="w-full flex justify-center bg-amber-200 p-5 shadow-md">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="flex flex-col items-center">
-            <Image src="/images/r.png" alt="Logo" width={90} height={90} />
-            <span className="text-black text-2xl font-bold">Rental</span>
-          </div>
-          <nav className="flex flex-row items-center gap-x-20">
-            <Link legacyBehavior href="/">
-              <a className={navLinkClasses('/')}>
-                <FaHome className="mr-2" />
-                Home
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-            </Link>
-            <Link legacyBehavior href="/listings">
-              <a className={navLinkClasses('/listings')}>
-                <FaList className="mr-2" />
-                Listings
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-            </Link>
-            <Link legacyBehavior href="/services">
-              <a className={navLinkClasses('/services')}>
-                <FaServicestack className="mr-2" />
-                Services
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-            </Link>
-            <Link legacyBehavior href="/agents">
-              <a className={navLinkClasses('/agents')}>
-                <FaUserTie className="mr-2" />
-                Find an Agent
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-            </Link>
-            <Link legacyBehavior href="/faq">
-              <a className={navLinkClasses('/faq')}>
-                <FaQuestionCircle className="mr-2" />
-                FAQ
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-            </Link>
-          </nav>
-        </div>
-      </header>
+     <header className="w-full relative items-center bg-gray-950 shadow-md">
+                <div className="absolute inset-0 bg-cover bg-center opacity-[5%]" style={{ backgroundImage: 'url(/images/h.jpg)' }}></div>
+                <div className="relative flex flex-row items-center ">
+                    <Image className="items-start m" src="/images/r.png" alt="Logo" width={200} height={200} />
+                    <div className="flex items-center space-x-10 text-white">
+                        <nav className="flex flex-row items-center gap-x-[40px] text-white">
+                            <Link legacyBehavior href="/" className="text-white">
+                                <a className={navLinkClasses('/')}>
+                                    <FaHome className="mr-2 ml-10 text-amber-500" />
+                                    <p className="text-white"> Home </p>
+                                </a>
+                            </Link>
+                            <Link legacyBehavior href="/listings">
+                                <a className={navLinkClasses('/listings')}>
+                                    <FaList className="mr-2 text-amber-500" />
+                                    <p className="text-white">Listings</p>
+                                </a>
+                            </Link>
+                            <Link legacyBehavior href="/services">
+                                <a className={navLinkClasses('/services')}>
+                                    <FaServicestack className="mr-2 text-amber-500" />
+                                    <p className="text-white">Services</p>
+                                </a>
+                            </Link>
+                            <Link legacyBehavior href="/agents">
+                                <a className={navLinkClasses('/agents')}>
+                                    <FaUserTie className="mr-2 text-amber-500" />
+                                    <p className="text-white">Find an Agent</p>
+                                </a>
+                            </Link>
+                            <Link legacyBehavior href="/faq">
+                                <a className={navLinkClasses('/faq')}>
+                                    <FaQuestionCircle className="mr-2 text-amber-500" />
+                                    <p className="text-white">FAQ</p>
+                                </a>
+                            </Link>
+                            <Link legacyBehavior href="/submit-listing">
+                                <a className={navLinkClasses('/submit-listing')}>
+                                    <FaPlusCircle className="mr-2 text-amber-500" />
+                                    <p className="text-white">Submit Listing</p>
+                                </a>
+                            </Link>
+
+                        </nav>
+                    </div>
+                </div>
+            </header>
 
       <main className="flex-grow container mx-auto p-8 bg-amber-100 shadow-lg rounded-lg mt-10">
         <section className="w-full text-center mt-16">
