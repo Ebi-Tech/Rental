@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FaHome, FaList, FaServicestack, FaQuestionCircle, FaBullseye, FaChartLine, FaTools, FaQuoteLeft, FaUserTie, FaPlusCircle } from "react-icons/fa";
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import 'tailwindcss/tailwind.css';
 import '../app/globals.css';
 
 function navLinkClasses(path: string): string {
@@ -39,9 +38,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-between bg-gray-50">
-      <header className="w-full relative items-center bg-gray-950 shadow-md">
+      <header className="w-full relative pb-5 items-center bg-gray-950 shadow-md">
         <div className="absolute inset-0 bg-cover bg-center opacity-[5%]" style={{ backgroundImage: 'url(/images/h.jpg)' }}></div>
-        <div className="relative flex flex-row items-center ">
+        <div className="relative flex flex-col items-center ">
           <Image className="items-start m" src="/images/r.png" alt="Logo" width={200} height={200} />
           <div className="flex items-center space-x-10 text-white">
             <nav className="flex flex-row items-center gap-x-[40px] text-white">
@@ -87,7 +86,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="flex-grow container h-[500px] mx-auto max-w-[100%] p-0.5 rounded-none bg-amber-500 shadow-lg rounded-lg">
+      <div className="flex-grow container h-[500px] mx-auto max-w-[100%] p-0.5 rounded-none bg-amber-500 shadow-lg">
         <section
           className="flex flex-col md:flex-row w-full items-center justify-between bg-cover bg-center h-full text-white p-8 rounded-lg transition-all duration-1000"
           style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
@@ -140,9 +139,7 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="p-6 bg-white rounded-lg shadow-md relative">
             <FaQuoteLeft className="text-amber-500 text-3xl absolute top-4 left-4" />
-            <p className="mt-8 text-gray-700">
-              "Rental helped me find a great apartment in Kigali. Highly recommend!"
-            </p>
+            <p className="mt-8 text-gray-700"> "Rental helped me find a great apartment in Kigali. Highly recommend!" </p>
             <span className="block mt-2 text-right text-amber-600">- John Doe</span>
           </div>
           <div className="p-6 bg-white rounded-lg shadow-md relative">
@@ -155,7 +152,7 @@ export default function Home() {
           <div className="p-6 bg-white rounded-lg shadow-md relative">
             <FaQuoteLeft className="text-amber-500 text-3xl absolute top-4 left-4" />
             <p className="mt-8 text-gray-700">
-              "Found a lovely home thanks to Rental. Couldn't be happier!"
+              "Found a lovely home thanks to Rental. Could&apos;t be happier!"
             </p>
             <span className="block mt-2 text-right text-amber-600">- Samuel Lee</span>
           </div>
